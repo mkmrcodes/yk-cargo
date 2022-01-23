@@ -6,8 +6,35 @@ To work this package, u need to have at least a test account on yurticikargo api
 
 usage:
 
+<<<<<<< HEAD
 const account = { wsUserName: 'YKTEST', wsPassword: 'YK', userLanguage: 'TR', type: 'TEST', }; const createQuery = { cargoKey: '123456789', invoiceKey: '123456', receiverCustName: 'John Doe', receiverAddress: 'gdfgdfsg g fdsgfdgfd g fgfdgfg 22', cityName: 'Ankara', townName: 'Yenimahalle', receiverPhone1: '05331111111', };
 
 const yKargo = new YKargo(account); yKargo.createShipment(createQuery).then((response) => console.log('response', response));
 
 Contributions are welcome :)
+=======
+const account = {
+  wsUserName: 'YKTEST',
+  wsPassword: 'YK',
+  userLanguage: 'TR',
+  type: 'TEST',
+};
+const createQuery = {
+  cargoKey: '123456789',
+  invoiceKey: '123456',
+  receiverCustName: 'John Doe',
+  receiverAddress: 'gdfgdfsg g fdsgfdgfd g fgfdgfg 22',
+  cityName: 'Ankara',
+  townName: 'Yenimahalle',
+  receiverPhone1: '05331111111',
+};
+
+const yKargo = new YKargo(account);
+yKargo.createShipment(createQuery).then((response) => console.log('response', response));
+
+Contributions are welcome :)
+
+
+
+
+>>>>>>> 7f2ccb41b62ee8ae6573371e5b3e2b6b1a294f48
