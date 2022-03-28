@@ -5,6 +5,7 @@ const testCrededentials = {
   wsPassword: 'YK',
   userLanguage: 'TR',
   type: 'TEST',
+  companyYKId: '123456789',
 };
 
 export const setAccount = (credentials: ICredentials) => {

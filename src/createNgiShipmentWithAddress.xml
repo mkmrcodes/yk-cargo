@@ -1,0 +1,91 @@
+<!-- request schema - only for info -->
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ngis="http://yurticikargo.com.tr/NgiShipmentInterfaceServices"><soapenv:Header /><soapenv:Body>
+
+<ngis:createNgiShipmentWithAddress>
+
+<wsUserName></wsUserName>
+<wsPassword></wsPassword>
+<wsUserLanguage></wsUserLanguage>
+
+<shipmentData>
+    <ngiDocumentKey></ngiDocumentKey>
+    <cargoType></cargoType>
+    <totalCargoCount></totalCargoCount>
+    <totalDesi></totalDesi>
+    <totalWeight></totalWeight>
+    <personGiver></personGiver>
+    <description></description>
+    <selectedArrivalUnitId></selectedArrivalUnitId>
+    <selectedArrivalTransferUnitId></selectedArrivalTransferUnitId>
+    <productCode></productCode>
+    <complementaryProductDataArray>
+        <complementaryProductCode>TT</complementaryProductCode>
+    </complementaryProductDataArray>
+    <docCargoDataArray>
+        <ngiCargoKey></ngiCargoKey>
+        <cargoType></cargoType>
+        <cargoDesi></cargoDesi>
+        <cargoWeight></cargoWeight>
+        <cargoCount></cargoCount>
+        <weightUnit/>
+        <length/>
+        <width/>
+        <height/>
+        <dimensionsUnit></dimensionsUnit>
+        <docCargoSpecialFieldDataArray>
+          <specialFieldName></specialFieldName>
+          <specialFieldValue></specialFieldValue>
+        </docCargoSpecialFieldDataArray>
+    </docCargoDataArray>
+    <specialFieldDataArray>
+        <specialFieldName></specialFieldName>
+        <specialFieldValue></specialFieldValue>
+    </specialFieldDataArray>
+    <codData>
+        <ttInvoiceAmount></ttInvoiceAmount>
+        <ttDocumentId></ttDocumentId>
+        <ttCollectionType></ttCollectionType>
+        <ttDocumentSaveType></ttDocumentSaveType>
+        <dcSelectedCredit></dcSelectedCredit>
+        <dcCreditRule></dcCreditRule>
+    </codData>
+</shipmentData>
+
+<XSenderCustAddress>
+    <senderCustName></senderCustName>
+    <senderAddress></senderAddress>
+    <cityId></cityId>
+    <townName></townName>
+    <senderPhone></senderPhone>
+    <senderMobilePhone></senderMobilePhone>
+    <senderEmailAddress></senderEmailAddress>
+    <senderCustReferenceId></senderCustReferenceId>
+    <senderAddressReferenceId></senderAddressReferenceId>
+    <senderAdditionalInfo></senderAdditionalInfo>
+    <latitude></latitude>
+    <longitude></longitude>
+</XSenderCustAddress>
+
+<XConsigneeCustAddress>
+    <consigneeCustName></consigneeCustName>
+    <consigneeAddress></consigneeAddress>
+    <cityId></cityId>
+    <townName></townName>
+    <consigneePhone></consigneePhone>
+    <consigneeMobilePhone></consigneeMobilePhone>
+    <consigneeEmailAddress></consigneeEmailAddress>
+    <consigneeCustReferenceId></consigneeCustReferenceId>
+    <consigneeAddressReferenceId></consigneeAddressReferenceId>
+    <consigneeAdditionalInfo></consigneeAdditionalInfo>
+    <latitude></latitude>
+    <longitude></longitude>
+</XConsigneeCustAddress>
+
+<payerCustData>
+    <invCustId></invCustId>
+    <invAddressId></invAddressId>
+</payerCustData>
+</ngis:createNgiShipmentWithAddress>
+</soapenv:Body>
+</soapenv:Envelope>

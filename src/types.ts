@@ -3,154 +3,249 @@ export interface ICredentials {
   wsPassword: string;
   userLanguage: string;
   type: string;
+  companyYKId: string;
 }
-export interface ICreateShipment {
-  cargoKey: string;
-  invoiceKey: string;
-  receiverCustName: string;
-  receiverAddress: string;
-  cityName: string;
+export interface ComplementaryProductDataArray {
+  complementaryProductCode: string;
+}
+
+export interface DocCargoSpecialFieldDataArray {
+  specialFieldName: number;
+  specialFieldValue: string;
+}
+
+export interface DocCargoDataArray {
+  ngiCargoKey: string;
+  cargoType: string;
+  cargoDesi: number;
+  cargoWeight: number;
+  cargoCount: number;
+  weightUnit: string;
+  length: string;
+  width: string;
+  height: string;
+  dimensionsUnit: string;
+  docCargoSpecialFieldDataArray: DocCargoSpecialFieldDataArray[];
+}
+
+export interface SpecialFieldDataArray {
+  specialFieldName: number;
+  specialFieldValue: string;
+}
+
+export interface CodData {
+  ttInvoiceAmount: number;
+  ttDocumentId: string;
+  ttCollectionType: string;
+  ttDocumentSaveType: string;
+  dcSelectedCredit: number;
+  dcCreditRule: string;
+}
+
+export interface ShipmentData {
+  ngiDocumentKey: string;
+  cargoType: string;
+  totalCargoCount: number;
+  totalDesi: number;
+  totalWeight: number;
+  personGiver: string;
+  description: string;
+  selectedArrivalUnitId: string;
+  selectedArrivalTransferUnitId: string;
+  productCode: string;
+  complementaryProductDataArray: ComplementaryProductDataArray[];
+  docCargoDataArray: DocCargoDataArray[];
+  specialFieldDataArray: SpecialFieldDataArray[];
+  codData?: CodData;
+}
+
+export interface XSenderCustAddress {
+  senderCustName: string;
+  senderAddress: string;
+  cityId: string;
   townName: string;
-  receiverPhone1: string;
-  receiverPhone2?: string;
-  receiverPhone3?: string;
-  custProdId?: string;
-  desi?: number;
-  desiSpecified?: boolean;
-  kg?: number;
-  kgSpecified?: boolean;
-  cargoCount?: number;
-  waybillNo?: string;
-  specialField1?: string;
-  specialField2?: string;
-  specialField3?: string;
-  ttCollectionType?: string;
-  ttInvoiceAmount?: number;
-  ttInvoiceAmountSpecified?: boolean;
-  ttDocumentId?: number;
-  ttDocumentSaveType?: string;
-  orgReceiverCustId?: string;
-  description?: string;
-  taxNumber?: string;
-  taxOfficeId?: number;
-  taxOfficeName?: string;
-  orgGeoCode?: string;
-  privilegeOrder?: string;
-  dcSelectedCredit?: number;
-  dcCreditRule?: number;
-  emailAddress?: string;
+  senderPhone: string;
+  senderMobilePhone: string;
+  senderEmailAddress: string;
+  senderCustReferenceId: string;
+  senderAddressReferenceId: string;
+  senderAdditionalInfo: string;
+  latitude: string;
+  longitude: string;
+}
+
+export interface XConsigneeCustAddress {
+  consigneeCustName: string;
+  consigneeAddress: string;
+  cityId: string;
+  townName: string;
+  consigneePhone: string;
+  consigneeMobilePhone: string;
+  consigneeEmailAddress: string;
+  consigneeCustReferenceId: string;
+  consigneeAddressReferenceId: string;
+  consigneeAdditionalInfo: string;
+  latitude: string;
+  longitude: string;
+}
+
+export interface PayerCustData {
+  invCustId: string;
+  invAddressId: string;
+}
+
+export interface ICreateShipment {
+  shipmentData: ShipmentData;
+  XSenderCustAddress: XSenderCustAddress;
+  XConsigneeCustAddress: XConsigneeCustAddress;
+}
+export interface IUpdateShipmentDesiWeightData {
+  ngiCargoKey: string;
+  ngiDocumentKey: string;
+  desi: number;
+  weight: number;
+}
+export interface ICancelShipmentData {
+  ngiCargoKey: string;
+  ngiDocumentKey: string;
+  cancellationDescription: string;
+}
+
+export interface IInvCustId {
+  invCustIdArray: string;
+}
+export interface ISenderCustId {
+  senderCustIdArray: string;
+}
+export interface IReceiverCustId {
+  receiverCustIdArray: string;
+}
+export type ICustomerParams = IInvCustId | ISenderCustId | IReceiverCustId;
+
+export interface IQueryParams {
+  fieldName: string;
+  fieldValueArray: string;
+  startDate: string;
+  endDate: string;
+  dateParamType: string;
+  withCargoLifecycle: string;
+}
+
+export interface ISpecialFieldArray {
+  specialFieldName: string;
+  specialFieldValue: string;
 }
 export interface ICreateShipmentResponse {
-  shippingOrderResultVO: {
+  XShipmentDataResponse: {
     outFlag: string;
-    outResult: string;
-    jobId: number;
-    count: number;
-    shippingOrderDetails: IShippingOrderDetail[];
+    projectId: string;
+    specialFieldDataArray: ISpecialFieldArray[];
   };
 }
-export interface IShippingOrderDetail {
-  cargoKey: string;
-  invoiceKey: string;
-  errCode: number;
-  errMessage: string;
+
+export interface IUpdateShipmentResponse {
+  XUpdateShipmentResponse: {
+    outFlag: number;
+    errorCode?: number;
+    outResult: string;
+    ngiCargoKey: string;
+    ngiDocumentKey: string;
+    desi: number;
+    weight: number;
+  };
 }
-export interface ICancelShipment {
-  cargoKey: string;
-}
+
 export interface ICancelShipmentResponse {
-  shippingCancelResultVO: {
-    outFlag: string;
+  XCancelShipmentResponse: {
+    outFlag: number;
+    errorCode?: number;
     outResult: string;
-    senderCustId: number;
-    count: number;
-    shippingCancelDetailVO: IShippingCancelDetail[];
+    ngiCargoKey: string;
+    ngiDocumentKey: string;
+    docId: number;
   };
 }
-export interface IShippingCancelDetail {
-  cargoKey: string;
-  invoiceKey: string;
-  jobId: number;
-  docId: number;
-  operationCode: number;
-  operationMessage: string;
-  operationStatus: string;
-  errCode: number;
-  errMessage: string;
-}
-export interface IQueryShipment {
-  keys: string[];
-  keyType: number;
-  addHistoricalData: boolean;
-  onlyTracking: boolean;
-}
-export interface IQueryShipmentResponse {
-  shippingDeliveryResultVO: {
-    outFlag: string;
-    outResult: string;
-    senderCustId: number;
-    count: number;
-    shippingDeliveryDetailVO: IShippingDeliveryDetail[];
+export interface IQueryResponse {
+  ShippingDataResponseVO: {
+    outFlag: number;
+    shippingDataDetailVOArray: IShippingDataDetailVOArray[];
   };
 }
-export interface IShippingDeliveryDetail {
-  cargoKey: string;
-  invoiceKey: string;
-  jobId: number;
+export interface IShippingDataDetailVOArray {
+  transactionStatus: number;
+  transactionErrCode: number;
+  transactionMessage: string;
+  fieldName: string;
+  fieldValue: string;
   docId: number;
-  operationCode: number;
-  operationMessage: string;
-  operationStatus: string;
-  errCode: number;
-  errMessage: string;
-  ShippingDeliveryItemDetailVO: IShippingDeliveryItemDetail[];
-}
-export interface IShippingDeliveryItemDetail {
-  arrivalTrCenterName: string;
-  arrivalTrCenterUnitId: string;
-  arrivalUnitId: string;
-  arrivalUnitName: string;
-  cargoEventExplanation: string;
-  cargoEventId: string;
-  cargoKey: string;
-  cargoReasonExplanation: string;
-  cargoReasonId: string;
-  cargoType: string;
-  cargoTypeExplanation: string;
-  contractId: string;
-  delEmpId: string;
-  delEmpName: string;
-  deliveryDate: string;
-  deliveryTime: string;
-  deliveryType: string;
-  deliveryTypeExplanation: string;
-  deliveryUnitId: string;
-  deliveryUnitName: string;
-  deliveryUnitType: string;
-  deliveryUnitTypeExplanation: string;
-  departureTrCenterName: string;
-  departureTrCenterUnitId: string;
-  departureUnitId: string;
-  departureUnitName: string;
-  docId: string;
+  invoiceNumber: number;
   docNumber: string;
-  docType: string;
-  docTypeExplanation: string;
-  documentDate: string;
-  documentDelFlag: string;
-  documentEventExplanation: string;
-  documentEventId: string;
-  documentReasonExplanation: string;
-  documentReasonId: string;
-  documentTime: string;
-  invoiceNumber: string;
-  pickupType: string;
-  pickupTypeExplanation: string;
-  product: string;
-  receiverAddressTxt: string;
-  receiverCustId: string;
+  waybillNo: string;
+  docCargoId: number;
+  senderCustId: number;
+  senderCustName: string;
+  senderAddressTxt: string;
+  invCustId: number;
+  invCustName: string;
+  receiverCustId: number;
   receiverCustName: string;
+  receiverAddressTxt: string;
+  senderAddressId: string;
+  receiverAddressId: string;
+  senderCityId: number;
+  receiverCityId: number;
+  senderCityName: string;
+  receiverCityName: string;
+  senderTownId: string;
+  receiverTownId: string;
+  senderTownName: string;
+  receiverTownName: string;
+  senderMobilePhoneNumber: string;
+  receiverMobilePhoneNumber: string;
+  documentReceiverMobilePhoneNumber: string;
+  documentDate: string;
+  documentTime: number;
+  documentDelFlag: number;
   receiverInfo: string;
+  docType: number;
+  docTypeExplanation: string;
+  trackingUrl: string;
+  shipmentDistance: string;
+  estimatedDeliveryDate: string;
+  cargoType: number;
+  cargoTypeExplanation: string;
+  pickupType: number;
+  pickupTypeExplanation: string;
+  deliveryType: number;
+  deliveryTypeExplanation: string;
+  deliveryDate: number;
+  deliveryTime: number;
+  totalPrice: number;
+  totalVat: number;
+  totalAmount: number;
+  product: string;
+  totalDesi: number;
+  totalKg: number;
+  totalDesiKg: number;
+  totalCargo: number;
+  arrivalUnitId: number;
+  arrivalUnitName: string;
+  departureUnitId: number;
+  departureUnitName: string;
+  deliveryUnitId: number;
+  deliveryUnitName: string;
+  cargoEventId: string;
+  cargoEventExplanation: string;
+  cargoReasonId: string;
+  cargoReasonExplanation: string;
+  documentEventId: string;
+  documentReasonId: string;
+  documentEventExplanation: string;
+  documentReasonExplanation: string;
+  delInfoDeliveryFlag: string;
+  delInfoDelUnitId: string;
+  delEmpName: string;
+  rejectFlag: number;
   rejectStatus: string;
   rejectStatusExplanation: string;
   rejectDescription: string;
@@ -160,34 +255,21 @@ export interface IShippingDeliveryItemDetail {
   returnDeliveryDate: string;
   returnStatus: string;
   returnStatusExplanation: string;
-  senderAddressTxt: string;
-  senderCustId: string;
-  senderCustName: string;
-  totalAmount: string;
-  totalCargo: string;
-  totalDesi: string;
-  totalDesiKg: string;
-  totalKg: string;
-  totalPrice: string;
-  totalVat: string;
-  trackingUrl: string;
-  invDocFieldVOArray: IInvDocField[];
-  invDocCargoVOArray: IInvDocCargo[];
+  invDocFieldVOArray: IInvDocFieldVOArray[];
+  docCargoVOArray: IDocCargoVOArray[];
 }
-export interface IInvDocField {
-  fieldName: string;
+export interface IInvDocFieldVOArray {
+  docId: number;
+  fieldName: number;
   fieldNameExplanation: string;
-  fieldValue: string;
+  fieldValue: number;
 }
-export interface IInvDocCargo {
-  unitId: string;
-  unitName: string;
-  eventId: string;
-  eventName: string;
-  reasonId: string;
-  reasonName: string;
-  eventDate: string;
-  eventTime: string;
-  cityName: string;
-  townName: string;
+export interface IDocCargoVOArray {
+  docCargoId: number;
+  docId: number;
+  cargoNumber: number;
+  cargoType: number;
+  desi: number;
+  kg: number;
+  barcodeStringValue: number;
 }

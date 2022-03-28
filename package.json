@@ -1,7 +1,7 @@
 {
   "name": "yk-cargo",
-  "version": "1.0.1",
-  "description": "yurtici kargo typescript nodejs",
+  "version": "1.0.9",
+  "description": "yurtici kargo pazaryeri typescript nodejs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -19,7 +19,8 @@
     "demo",
     "typescript",
     "library",
-    "yurt ici cargo"
+    "yurt ici cargo",
+    "pazar yeri"
   ],
   "author": "Mehmet KMR <mkmrcodes@gmail.com>",
   "license": "MIT",
@@ -29,11 +30,11 @@
   "homepage": "https://github.com/mkmrcodes/yk-cargo#readme",
   "devDependencies": {
     "@types/easy-soap-request": "^4.1.1",
-    "@types/node": "^17.0.10"
+    "@types/node": "^17.0.23"
   },
   "dependencies": {
-    "easy-soap-request": "^4.6.0",
-    "fast-xml-parser": "^4.0.1",
-    "typescript": "^4.4.4"
+    "easy-soap-request": "^4.7.0",
+    "fast-xml-parser": "^4.0.7",
+    "typescript": "^4.6.3"
   }
 }
