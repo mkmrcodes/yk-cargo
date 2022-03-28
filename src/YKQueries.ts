@@ -3,7 +3,7 @@ import soaprequest from 'easy-soap-request';
 export const createShipmentQuery = async (url: string, query: string) => {
   const reqHeaders = {
     'Content-Type': 'text/xml;charset=UTF-8',
-    SOAPAction: '',
+    soapAction: '',
   };
   try {
     const { response } = await soaprequest({
@@ -25,7 +25,7 @@ export const createShipmentQuery = async (url: string, query: string) => {
 export const updateShipmentQuery = async (url: string, query: string) => {
   const reqHeaders = {
     'Content-Type': 'text/xml;charset=UTF-8',
-    SOAPAction: '',
+    soapAction: '',
   };
   try {
     const { response } = await soaprequest({
@@ -46,7 +46,7 @@ export const updateShipmentQuery = async (url: string, query: string) => {
 export const cancelShipmentQuery = async (url: string, query: string) => {
   const reqHeaders = {
     'Content-Type': 'text/xml;charset=UTF-8',
-    SOAPAction: '',
+    soapAction: '',
   };
   try {
     const { response } = await soaprequest({
@@ -67,7 +67,7 @@ export const cancelShipmentQuery = async (url: string, query: string) => {
 export const queryShipmentQuery = async (url: string, query: string) => {
   const reqHeaders = {
     'Content-Type': 'text/xml;charset=UTF-8',
-    SOAPAction: '',
+    soapAction: '',
   };
   try {
     const { response } = await soaprequest({

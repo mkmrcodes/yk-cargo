@@ -24,6 +24,7 @@ import {
   YK_TEST_MAIN_URL,
   YK_TEST_REPORT_URL,
 } from './constants';
+// import { axClient } from './axClient';
 
 export class YKargo {
   private readonly account: ICredentials;
@@ -39,7 +40,7 @@ export class YKargo {
       ignoreAttributes: false,
       //preserveOrder: true,
       //processEntities: false,
-      suppressEmptyNode: true,
+      //suppressEmptyNode: true,
     });
 
     const data = builder.build(createNgiShipmentWithAddress);
@@ -48,14 +49,15 @@ export class YKargo {
       .replace(/\n|\r/g, '')
       .replace(
         '<codData/>',
-        '<codData><ttInvoiceAmount/><dcSelectedCredit/></codData>'
+        '<codData><ttInvoiceAmount></ttInvoiceAmount><ttDocumentId></ttDocumentId><ttCollectionType></ttCollectionType><ttDocumentSaveType></ttDocumentSaveType><dcSelectedCredit></dcSelectedCredit><dcCreditRule></dcCreditRule></codData>'
       );
     console.log('SOAPQuery:', SOAPQuery);
     const response = await createShipmentQuery(
       this.account.type === 'TEST' ? YK_TEST_MAIN_URL : YK_LIVE_MAIN_URL,
       SOAPQuery
     );
-    console.log({ response });
+    //const response = await axClient.post(YK_LIVE_MAIN_URL, SOAPQuery);
+    //console.log({ response });
     const responseJSON = this.parseXmlCreateShipmentesponse(response.body);
     return responseJSON;
   }

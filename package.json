@@ -1,6 +1,6 @@
 {
   "name": "yk-cargo",
-  "version": "1.1.4",
+  "version": "1.1.9",
   "description": "yurtici kargo pazaryeri typescript nodejs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
