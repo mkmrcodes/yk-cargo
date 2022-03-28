@@ -46,7 +46,10 @@ export class YKargo {
 
     const SOAPQuery = this.createShipmentTemplate(data)
       .replace(/\n|\r/g, '')
-      .replace('<codData/>', '<codData></codData>');
+      .replace(
+        '<codData/>',
+        '<codData><ttInvoiceAmount/><dcSelectedCredit/></codData>'
+      );
     console.log('SOAPQuery:', SOAPQuery);
     const response = await createShipmentQuery(
       this.account.type === 'TEST' ? YK_TEST_MAIN_URL : YK_LIVE_MAIN_URL,
