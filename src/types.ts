@@ -56,7 +56,7 @@ export interface ShipmentData {
   complementaryProductDataArray: ComplementaryProductDataArray[];
   docCargoDataArray: DocCargoDataArray[];
   specialFieldDataArray: SpecialFieldDataArray[];
-  codData?: CodData;
+  codData?: CodData | string;
 }
 
 export interface XSenderCustAddress {
