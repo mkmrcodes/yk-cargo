@@ -44,7 +44,9 @@ export class YKargo {
 
     const data = builder.build(createNgiShipmentWithAddress);
 
-    const SOAPQuery = this.createShipmentTemplate(data).replace(/\n|\r/g, '');
+    const SOAPQuery = this.createShipmentTemplate(data)
+      .replace(/\n|\r/g, '')
+      .replace('<codData/>', '<codData></codData>');
     console.log('SOAPQuery:', SOAPQuery);
     const response = await createShipmentQuery(
       this.account.type === 'TEST' ? YK_TEST_MAIN_URL : YK_LIVE_MAIN_URL,
