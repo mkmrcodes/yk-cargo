@@ -5,14 +5,6 @@ export interface ICredentials {
   type: string;
   companyYKId: string;
 }
-export interface ComplementaryProductDataArray {
-  complementaryProductCode: string;
-}
-
-export interface DocCargoSpecialFieldDataArray {
-  specialFieldName: number;
-  specialFieldValue: string;
-}
 
 export interface DocCargoDataArray {
   ngiCargoKey: string;
@@ -20,12 +12,9 @@ export interface DocCargoDataArray {
   cargoDesi: number;
   cargoWeight: number;
   cargoCount: number;
-  weightUnit: string;
   length: string;
   width: string;
   height: string;
-  dimensionsUnit: string;
-  docCargoSpecialFieldDataArray: DocCargoSpecialFieldDataArray[];
 }
 
 export interface SpecialFieldDataArray {
@@ -35,11 +24,11 @@ export interface SpecialFieldDataArray {
 
 export interface CodData {
   ttInvoiceAmount: number;
-  ttDocumentId: string;
-  ttCollectionType: string;
-  ttDocumentSaveType: string;
+  ttDocumentId?: string;
+  ttCollectionType?: string;
+  ttDocumentSaveType?: string;
   dcSelectedCredit: number;
-  dcCreditRule: string;
+  dcCreditRule?: string;
 }
 
 export interface ShipmentData {
@@ -49,14 +38,10 @@ export interface ShipmentData {
   totalDesi: number;
   totalWeight: number;
   personGiver: string;
-  description: string;
-  selectedArrivalUnitId: string;
-  selectedArrivalTransferUnitId: string;
   productCode: string;
-  complementaryProductDataArray: ComplementaryProductDataArray[];
-  docCargoDataArray: DocCargoDataArray[];
   specialFieldDataArray: SpecialFieldDataArray[];
   codData: CodData | string;
+  docCargoDataArray: DocCargoDataArray;
 }
 
 export interface XSenderCustAddress {
@@ -66,12 +51,6 @@ export interface XSenderCustAddress {
   townName: string;
   senderPhone: string;
   senderMobilePhone: string;
-  senderEmailAddress: string;
-  senderCustReferenceId: string;
-  senderAddressReferenceId: string;
-  senderAdditionalInfo: string;
-  latitude: string;
-  longitude: string;
 }
 
 export interface XConsigneeCustAddress {
@@ -81,17 +60,10 @@ export interface XConsigneeCustAddress {
   townName: string;
   consigneePhone: string;
   consigneeMobilePhone: string;
-  consigneeEmailAddress: string;
-  consigneeCustReferenceId: string;
-  consigneeAddressReferenceId: string;
-  consigneeAdditionalInfo: string;
-  latitude: string;
-  longitude: string;
 }
 
 export interface PayerCustData {
   invCustId: string;
-  invAddressId: string;
 }
 
 export interface ICreateShipment {
@@ -111,16 +83,9 @@ export interface ICancelShipmentData {
   cancellationDescription: string;
 }
 
-export interface IInvCustId {
+export interface ICustomerParams {
   invCustIdArray: string;
 }
-export interface ISenderCustId {
-  senderCustIdArray: string;
-}
-export interface IReceiverCustId {
-  receiverCustIdArray: string;
-}
-export type ICustomerParams = IInvCustId | ISenderCustId | IReceiverCustId;
 
 export interface IQueryParams {
   fieldName: string;

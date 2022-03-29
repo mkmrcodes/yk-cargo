@@ -12,19 +12,13 @@ import {
   ICreateShipment,
 } from './types';
 import { setAccount } from './credentials';
-import {
-  createShipmentQuery,
-  cancelShipmentQuery,
-  queryShipmentQuery,
-  updateShipmentQuery,
-} from './YKQueries';
+import { ykQuery } from './YKQueries';
 import {
   YK_LIVE_MAIN_URL,
   YK_LIVE_REPORT_URL,
   YK_TEST_MAIN_URL,
   YK_TEST_REPORT_URL,
 } from './constants';
-// import { axClient } from './axClient';
 
 export class YKargo {
   private readonly account: ICredentials;
@@ -40,19 +34,17 @@ export class YKargo {
       ignoreAttributes: false,
       //preserveOrder: true,
       //processEntities: false,
-      //suppressEmptyNode: true,
+      suppressEmptyNode: true,
     });
 
     const data = builder.build(createNgiShipmentWithAddress);
 
     const SOAPQuery = this.createShipmentTemplate(data).replace(/\n|\r/g, '');
     console.log('SOAPQuery:', SOAPQuery);
-    const response = await createShipmentQuery(
+    const response = await ykQuery(
       this.account.type === 'TEST' ? YK_TEST_MAIN_URL : YK_LIVE_MAIN_URL,
       SOAPQuery
     );
-    //const response = await axClient.post(YK_LIVE_MAIN_URL, SOAPQuery);
-    //console.log({ response });
     const responseJSON = this.parseXmlCreateShipmentesponse(response.body);
     return responseJSON;
   }
@@ -67,7 +59,7 @@ export class YKargo {
       /\n|\r/g,
       ''
     );
-    const response = await updateShipmentQuery(
+    const response = await ykQuery(
       this.account.type === 'TEST' ? YK_TEST_MAIN_URL : YK_LIVE_MAIN_URL,
       SOAPQuery
     );
@@ -86,7 +78,7 @@ export class YKargo {
       /\n|\r/g,
       ''
     );
-    const response = await cancelShipmentQuery(
+    const response = await ykQuery(
       this.account.type === 'TEST' ? YK_TEST_MAIN_URL : YK_LIVE_MAIN_URL,
       SOAPQuery
     );
@@ -111,7 +103,7 @@ export class YKargo {
     ).replace(/\n|\r/g, '');
     console.log(SOAPQuery);
 
-    const response = await queryShipmentQuery(
+    const response = await ykQuery(
       this.account.type === 'TEST' ? YK_TEST_REPORT_URL : YK_LIVE_REPORT_URL,
       SOAPQuery
     );
