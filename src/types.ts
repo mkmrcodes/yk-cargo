@@ -23,11 +23,11 @@ export interface SpecialFieldDataArray {
 }
 
 export interface CodData {
-  ttInvoiceAmount: number;
+  ttInvoiceAmount: number | string;
   ttDocumentId?: string;
   ttCollectionType?: string;
   ttDocumentSaveType?: string;
-  dcSelectedCredit: number;
+  dcSelectedCredit: number | string;
   dcCreditRule?: string;
 }
 
@@ -47,7 +47,7 @@ export interface ShipmentData {
 export interface XSenderCustAddress {
   senderCustName: string;
   senderAddress: string;
-  cityId: string;
+  cityId: string | number;
   townName: string;
   senderPhone: string;
   senderMobilePhone: string;
@@ -56,7 +56,7 @@ export interface XSenderCustAddress {
 export interface XConsigneeCustAddress {
   consigneeCustName: string;
   consigneeAddress: string;
-  cityId: string;
+  cityId: string | number;
   townName: string;
   consigneePhone: string;
   consigneeMobilePhone: string;
