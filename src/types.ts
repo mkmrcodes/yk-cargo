@@ -126,17 +126,24 @@ export interface IUpdateShipmentResponse {
     weight: number;
   };
 }
-
 export interface ICancelShipmentResponse {
-  XCancelShipmentResponse: {
-    outFlag: number;
-    errorCode?: number;
-    outResult: string;
-    ngiCargoKey: string;
-    ngiDocumentKey: string;
-    docId: number;
+  'env:Envelope': {
+    'env:Header': string;
+    'env:Body': {
+      'ns1:cancelNgiShipmentResponse': {
+        XCancelShipmentResponse: {
+          outFlag: number;
+          outResult: string;
+          ngiCargoKey: string;
+          ngiDocumentKey: string;
+          docId: string;
+          errorCode?: string;
+        };
+      };
+    };
   };
 }
+
 export interface IQueryResponse {
   ShippingDataResponseVO: {
     outFlag: number;
