@@ -101,10 +101,17 @@ export interface ISpecialFieldArray {
   specialFieldValue: string;
 }
 export interface ICreateShipmentResponse {
-  XShipmentDataResponse: {
-    outFlag: string;
-    projectId: string;
-    specialFieldDataArray: ISpecialFieldArray[];
+  'env:Envelope': {
+    'env:Header': string;
+    'env:Body': {
+      'ns1:createNgiShipmentWithAddressResponse': {
+        XShipmentDataResponse: {
+          outFlag: string;
+          projectId: string;
+          specialFieldDataArray: ISpecialFieldArray[];
+        };
+      };
+    };
   };
 }
 
