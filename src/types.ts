@@ -145,9 +145,16 @@ export interface ICancelShipmentResponse {
 }
 
 export interface IQueryResponse {
-  ShippingDataResponseVO: {
-    outFlag: number;
-    shippingDataDetailVOArray: IShippingDataDetailVOArray[];
+  'env:Envelope': {
+    'env:Header': string;
+    'env:Body': {
+      'ns1:listInvDocumentInterfaceByReferenceResponse': {
+        ShippingDataResponseVO: {
+          outFlag: number;
+          shippingDataDetailVOArray: IShippingDataDetailVOArray;
+        };
+      };
+    };
   };
 }
 export interface IShippingDataDetailVOArray {
